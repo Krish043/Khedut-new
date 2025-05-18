@@ -26,8 +26,8 @@ const UserDashboard = () => {
         }
 
         const [userResponse, blogsResponse] = await Promise.all([
-          axios.get(`http://localhost:3000/users/email/${storedUser.email}`),
-          axios.get("http://localhost:3000/blog"),
+          axios.get(`${import.meta.env.VITE_BACKEND}/users/email/${storedUser.email}`),
+          axios.get(`${import.meta.env.VITE_BACKEND}/blog`),
         ]);
 
         const fetchedUser = userResponse.data;
@@ -48,7 +48,7 @@ const UserDashboard = () => {
             typeof schemeObj.scheme === "object"
             ? schemeObj.scheme._id
             : schemeObj.scheme;
-            return axios.get(`http://localhost:3000/schemes/${schemeId}`);
+            return axios.get(`${import.meta.env.VITE_BACKEND}/schemes/${schemeId}`);
           });
 
           const detailsResponses = await Promise.all(detailsPromises);

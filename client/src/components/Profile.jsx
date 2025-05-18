@@ -46,8 +46,8 @@ const Profile = () => {
       try {
         // Fetch all blogs and user data by email
         const [blogsResponse, userResponse] = await Promise.all([
-          axios.get("http://localhost:3000/blog"),
-          axios.get(`http://localhost:3000/users/email/${user.email}`),
+          axios.get(`${import.meta.env.VITE_BACKEND}/blog`),
+          axios.get(`${import.meta.env.VITE_BACKEND}/users/email/${user.email}`),
         ]);
 
         const userId = userResponse.data.id; // get the user ID
@@ -60,7 +60,7 @@ const Profile = () => {
         setAppliedSchemes(userResponse.data.appliedSchemes);
         const schemeDetailsPromises = userResponse.data.appliedSchemes.map(
           (schemeObj) =>
-            axios.get(`http://localhost:3000/schemes/${schemeObj.scheme._id}`)
+            axios.get(`${import.meta.env.VITE_BACKEND}/schemes/${schemeObj.scheme._id}`)
         );
         const schemeDetailsResponses = await Promise.all(schemeDetailsPromises);
         setSchemeDetails(
@@ -82,7 +82,7 @@ const Profile = () => {
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(`http://localhost:3000/blog/${blogToDelete}`);
+      await axios.delete(`${import.meta.env.VITE_BACKEND}/blog/${blogToDelete}`);
       setBlogs(blogs.filter((blog) => blog._id !== blogToDelete));
       toast.success("Blog deleted successfully.");
     } catch (error) {

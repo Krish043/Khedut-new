@@ -21,12 +21,12 @@ export default function BlogDetail() {
   useEffect(() => {
     const fetchBlog = async () => {
       try {
-        const blogRes = await axios.get(`http://localhost:3000/blog/${id}`);
+        const blogRes = await axios.get(`${import.meta.env.VITE_BACKEND}/blog/${id}`);
         setBlog(blogRes.data);
 
         if (blogRes.data.author) {
           const authorRes = await axios.get(
-            `http://localhost:3000/users/id/${blogRes.data.author}`
+            `${import.meta.env.VITE_BACKEND}/users/id/${blogRes.data.author}`
           );
           setAuthor(authorRes.data);
         }

@@ -62,7 +62,7 @@ const Buy = () => {
         return;
       }
 
-      const response = await axios.post("http://localhost:3000/cart", {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND}/cart`, {
         mail,
         prodId: productId,
       });
@@ -78,7 +78,7 @@ const Buy = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/products");
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND}/products`);
         setProducts(response.data);
         fetchUserDetails(response.data);
       } catch (error) {
@@ -88,7 +88,7 @@ const Buy = () => {
 
     const fetchBestsellers = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/bestsellers");
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND}/bestsellers`);
         setBestsellers(response.data);
       } catch (error) {
         console.error("Error fetching bestsellers:", error);
@@ -107,7 +107,7 @@ const Buy = () => {
 
   const fetchUserDetails = (products) => {
     const userPromises = products.map((product) =>
-      axios.get(`http://localhost:3000/users/email/${product.email}`)
+      axios.get(`${import.meta.env.VITE_BACKEND}/users/email/${product.email}`)
     );
     Promise.all(userPromises)
       .then((responses) => {
@@ -123,7 +123,7 @@ const Buy = () => {
 
   const handleSubmitRating = () => {
     axios
-      .post("http://localhost:3000/ratings", {
+      .post(`${import.meta.env.VITE_BACKEND}/ratings`, {
         id: popup.id,
         rating,
       })

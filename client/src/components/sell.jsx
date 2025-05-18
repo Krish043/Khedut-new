@@ -38,7 +38,7 @@ const Sell = () => {
 
   const fetchProducts = () => {
     axios
-      .get("http://localhost:3000/products")
+      .get(`${import.meta.env.VITE_BACKEND}/products`)
       .then((response) => {
         setProducts(response.data);
         fetchUserDetails(response.data);
@@ -48,7 +48,7 @@ const Sell = () => {
 
   const fetchUserDetails = (products) => {
     const userPromises = products.map(product => 
-      axios.get(`http://localhost:3000/users/email/${product.email}`)
+      axios.get(`${import.meta.env.VITE_BACKEND}/users/email/${product.email}`)
     );
     Promise.all(userPromises)
       .then(responses => {

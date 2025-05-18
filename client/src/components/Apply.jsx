@@ -12,7 +12,7 @@ const Apply = () => {
   useEffect(() => {
     const fetchScheme = async () => {
       const scheme = await axios.get(
-        `http://localhost:3000/schemes/${selectedSchemeId}`
+        `${import.meta.env.VITE_BACKEND}/schemes/${selectedSchemeId}`
       );
       setSchemeData(scheme.data);
 
@@ -48,7 +48,7 @@ const Apply = () => {
       }
       console.log("Selected schemeId:", selectedSchemeId);
 
-      const response = await axios.post("http://localhost:3000/apply", {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND}/apply`, {
         mail,
         schemeId: selectedSchemeId,
       });

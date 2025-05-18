@@ -29,7 +29,7 @@ const AddBlog = () => {
     const fetchUserByEmail = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:3000/users/email/${user.email}`
+          `${import.meta.env.VITE_BACKEND}/users/email/${user.email}`
         );
         const fullUser = {
           ...user,
@@ -81,7 +81,7 @@ const AddBlog = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/blog",
+        `${import.meta.env.VITE_BACKEND}/blog`,
         blogToSubmit
       );
       setBlogs([...blogs, response.data]);

@@ -75,14 +75,14 @@ const ProfitTable = ({ user }) => {
       try {
         setIsLoading(true);
         const res = await axios.get(
-          `http://localhost:3000/users/email/${user.email}`
+          `${import.meta.env.VITE_BACKEND}/users/email/${user.email}`
         );
         const profits = res.data.sales;
 
         const productDetails = await Promise.all(
           profits.map(async (entry) => {
             const productRes = await axios.get(
-              `http://localhost:3000/products/${entry.productId}`
+              `${import.meta.env.VITE_BACKEND}/products/${entry.productId}`
             );
             return {
               ...entry,

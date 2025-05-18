@@ -41,7 +41,7 @@ const AddProduct = () => {
 
   const handleAddProduct = () => {
     if (Object.values(product).every((field) => field)) {
-      axios.post('http://localhost:3000/products', {
+      axios.post(`${import.meta.env.VITE_BACKEND}/products`, {
         ...product,
         email: auth.email,
       })

@@ -27,7 +27,7 @@ const Blogs = () => {
   const handleLike = async (blogId) => {
     try {
       const response = await axios.post(
-        `http://localhost:3000/blog/like/${blogId}`
+        `${import.meta.env.VITE_BACKEND}/blog/like/${blogId}`
       );
       const updatedLikes = response.data.likes;
 
@@ -63,7 +63,7 @@ const Blogs = () => {
 
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/blog");
+      const response = await axios.get(`${import.meta.env.VITE_BACKEND}/blog`);
       const blogsData = response.data;
       // console.log("Fetched blogs:", blogsData);
 
@@ -76,7 +76,7 @@ const Blogs = () => {
             // console.log("Fetching user for author ID:", blog.author); // ✅ Add this
 
             const userResponse = await axios.get(
-              `http://localhost:3000/users/id/${blog.author}`
+              `${import.meta.env.VITE_BACKEND}/users/id/${blog.author}`
             );
             // console.log(blog.author);
 

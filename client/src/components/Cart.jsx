@@ -27,7 +27,7 @@ const Cart = () => {
       }
 
       const response = await axios.get(
-        `http://localhost:3000/cart/user/${user.email}`
+        `${import.meta.env.VITE_BACKEND}/cart/user/${user.email}`
       );
       const cartProds = response.data;
       if (!cartProds || cartProds.length === 0) {
@@ -55,7 +55,7 @@ const Cart = () => {
 
   const handleAddToCart = async (prodId) => {
     try {
-      const response = await axios.post("http://localhost:3000/cart/", {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND}/cart/`, {
         mail: user.email,
         prodId: prodId,
       });
@@ -70,7 +70,7 @@ const Cart = () => {
 
   const handleRemoveFromCart = async (prodId) => {
     try {
-      const response = await axios.post("http://localhost:3000/cart/remove", {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND}/cart/remove`, {
         mail: user.email,
         prodId: prodId,
       });
@@ -96,7 +96,7 @@ const Cart = () => {
       const headers = { "Content-Type": "application/json" };
 
       const response = await fetch(
-        `http://localhost:3000/cart/create-checkout-session`,
+        `${import.meta.env.VITE_BACKEND}/cart/create-checkout-session`,
         {
           method: "POST",
           headers: headers,

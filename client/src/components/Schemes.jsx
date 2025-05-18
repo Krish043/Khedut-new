@@ -86,7 +86,7 @@ const Schemes = () => {
     const fetchSchemes = async () => {
       if (!userRole) return;
       try {
-        const response = await axios.get("http://localhost:3000/schemes");
+        const response = await axios.get(`${import.meta.env.VITE_BACKEND}/schemes`);
         const filteredSchemes = response.data.filter((scheme) => {
           if (scheme.applicableTo.length === 2) {
             return true;
